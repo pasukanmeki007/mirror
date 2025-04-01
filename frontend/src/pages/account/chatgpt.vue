@@ -3,7 +3,7 @@
     <t-card class="list-card-container">
       <t-row justify="space-between">
         <div class="left-operation-container">
-          <t-button @click="showDialog = true">录入</t-button>
+          <t-button @click="showDialog = true">type</t-button>
 
           <p v-if="!!selectedRowKeys.length" class="selected-count">
             {{ $t('pages.listBase.select') }} {{ selectedRowKeys.length }} {{ $t('pages.listBase.items') }}
@@ -23,8 +23,8 @@
         @page-change="rehandlePageChange"
       >
         <template #auth_status="{ row }">
-          <t-tag v-if="row.auth_status === false" theme="danger" variant="light"> 已过期 </t-tag>
-          <t-tag v-if="row.auth_status === true" theme="success" variant="light"> 运行中 </t-tag>
+          <t-tag v-if="row.auth_status === false" theme="danger" variant="light"> expired </t-tag>
+          <t-tag v-if="row.auth_status === true" theme="success" variant="light"> running </t-tag>
         </template>
 
         <!--
@@ -60,16 +60,16 @@
 
         <template #op="slotProps">
           <t-space>
-            <!-- <t-link theme="primary" @click="handleUpdate(slotProps.row)">更新</t-link> -->
-            <t-link theme="primary" @click="handleEdit(slotProps.row)">编辑</t-link>
+            <!-- <t-link theme="primary" @click="handleUpdate(slotProps.row)">update</t-link> -->
+            <t-link theme="primary" @click="handleEdit(slotProps.row)">edit</t-link>
 
-            <t-link theme="danger" @click="handleClickDelete(slotProps.row)">删除</t-link>
+            <t-link theme="danger" @click="handleClickDelete(slotProps.row)">removing</t-link>
           </t-space>
         </template>
       </t-table>
 
       <!-- 录入 Token dialog -->
-      <t-dialog v-model:visible="showDialog" header="录入 ChatGPT Token" width="50%" :on-confirm="handleAdd">
+      <t-dialog v-model:visible="showDialog" header="input ChatGPT Token" width="50%" :on-confirm="handleAdd">
         <t-form v-loading="loading" :data="newChat" :label-width="0">
           <t-form-item label="Token">
             <div style="display: flex; flex-direction: column; width: 100%">
@@ -78,12 +78,12 @@
                 :autosize="{ minRows: 5, maxRows: 5 }"
                 autofocus
                 size="large"
-                placeholder="请输入 Access Token 或 Session Token 或 Refresh Token。一行一串Token，多个Token请换行输入。"
+                placeholder="Please enter Access Token or Session Token or Refresh Token. one line for one token, more than one token on a different line.。"
               ></t-textarea>
               <span style="font-size: 12px; color: #888">
                 <t-link target="_blank" theme="primary" size="small" href="https://chatgpt.com/api/auth/session">
                   Access Token</t-link
-                >：有效期10天
+                >：Valid for 10 days
               </span>
               <span style="font-size: 12px; color: #888">
                 <t-link target="_blank" theme="primary" size="small" :href="ChatgptTokenTutorialUrl"
