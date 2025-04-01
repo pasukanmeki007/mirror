@@ -41,8 +41,8 @@ const importMessages = computed(() => {
 
 export const i18n = createI18n({
   legacy: false,
-  locale: useLocalStorage(localeConfigKey, 'zh_CN').value || languages.value[0] || 'zh_CN',
-  fallbackLocale: 'zh_CN',
+  locale: useLocalStorage(localeConfigKey, 'en_US').value || languages.value[0] || 'en_US',
+  fallbackLocale: 'en_US',
   messages: importMessages.value,
   globalInjection: true,
 });
