@@ -8,12 +8,12 @@
     hover
   >
     <template #auth_status="{ row }">
-      <t-tag v-if="row.auth_status === false" theme="danger" variant="light"> 已过期 </t-tag>
-      <t-tag v-if="row.auth_status === true" theme="success" variant="light"> 运行中 </t-tag>
+      <t-tag v-if="row.auth_status === false" theme="danger" variant="light"> Expired </t-tag>
+      <t-tag v-if="row.auth_status === true" theme="success" variant="light"> Running </t-tag>
     </template>
 
     <template #op="slotProps">
-      <t-link theme="primary" @click="handleCopyUrl(slotProps.row.mirror_token)"> 复制</t-link>
+      <t-link theme="primary" @click="handleCopyUrl(slotProps.row.mirror_token)"> copy</t-link>
     </template>
   </t-table>
 </template>
@@ -35,10 +35,10 @@ const tableChatgptDetailsData = ref<TableChatgptDetailsData[]>([]);
 
 const columnsChatgptDetails: TableProps['columns'] = [
   { colKey: 'chatgpt_username', title: 'ChatGPT', width: 80 },
-  { colKey: 'plan_type', title: '类型', width: 30 },
-  { colKey: 'auth_status', title: '状态', width: 30 },
-  { colKey: 'mirror_token', title: 'Mirror Token (用于 API, 该token不会变更)', width: 100 },
-  { colKey: 'op', title: '免登链接', width: 30 },
+  { colKey: 'plan_type', title: 'plan_type', width: 30 },
+  { colKey: 'auth_status', title: 'auth_status', width: 30 },
+  { colKey: 'mirror_token', title: 'Mirror Token (Used for API, The token will not change)', width: 100 },
+  { colKey: 'op', title: 'No Login Link', width: 30 },
 ];
 
 const getChatGPTDetails = async (user: any) => {
@@ -54,7 +54,7 @@ const getChatGPTDetails = async (user: any) => {
 const handleCopyUrl = (mirrorToken: string) => {
   const notLoginUrl = `${window.location.origin}/api/not-login?user_gateway_token=${mirrorToken}`;
   navigator.clipboard.writeText(notLoginUrl);
-  MessagePlugin.success('复制成功');
+  MessagePlugin.success('Copy Success');
 };
 
 defineExpose({
