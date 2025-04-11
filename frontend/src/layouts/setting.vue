@@ -182,11 +182,11 @@ const handleCopy = () => {
   copy()
     .then(() => {
       MessagePlugin.closeAll();
-      MessagePlugin.success('复制成功');
+      MessagePlugin.success('Copy Success');
     })
     .catch(() => {
       MessagePlugin.closeAll();
-      MessagePlugin.error('复制失败');
+      MessagePlugin.error('Copy Failure');
     });
 };
 const getModeIcon = (mode: string) => {
