@@ -3,7 +3,7 @@ from pathlib import Path
 
 DEBUG = False
 
-FREE_ACCOUNT_USERNAME = "free_account"
+FREE_ACCOUNT_USERNAME = "kontolodon"
 
 ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME")
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
