@@ -88,21 +88,21 @@
               <span style="font-size: 12px; color: #888">
                 <t-link target="_blank" theme="primary" size="small" :href="ChatgptTokenTutorialUrl"
                   >Session Token</t-link
-                >：有效期30天
+                >：Valid for 30 days
                 <!-- or
-                <t-link target="_blank" theme="primary" size="small" :href="ChatgptTokenAuthUrl">自动获取</t-link> -->
+                <t-link target="_blank" theme="primary" size="small" :href="ChatgptTokenAuthUrl">Automatic acquisition</t-link> -->
               </span>
-              <span style="font-size: 12px; color: #888"> Refresh Token：有效期永久 </span>
+              <span style="font-size: 12px; color: #888"> Refresh Token：Validity period is permanent </span>
             </div>
           </t-form-item>
         </t-form>
       </t-dialog>
 
       <!-- 编辑 备注信息 -->
-      <t-dialog v-model:visible="dialogVisibleEdit" header="编辑信息" width="50%" :on-confirm="handleEditConfirm">
+      <t-dialog v-model:visible="dialogVisibleEdit" header="Edit information" width="50%" :on-confirm="handleEditConfirm">
         <t-form v-loading="loading" :data="editChatInfo" :label-width="120">
-          <t-form-item label="备注信息">
-            <t-input v-model="editChatInfo.remark" size="large" placeholder="备注信息"></t-input>
+          <t-form-item label="Remarks">
+            <t-input v-model="editChatInfo.remark" size="large" placeholder="Remarks"></t-input>
           </t-form-item>
         </t-form>
       </t-dialog>
@@ -110,7 +110,7 @@
       <!-- 确认删除 dialog -->
       <t-dialog
         v-model:visible="dialogVisibleDelete"
-        header="确认删除该 ChatGPT token 吗"
+        header="Confirm to delete the ChatGPT token ?"
         width="600"
         :on-confirm="handleDelete"
       >
@@ -155,15 +155,15 @@ const rehandlePageChange = (curr: any) => {
 const columns: TableProps['columns'] = [
   { colKey: 'row-select', type: 'multiple' },
   { colKey: 'id', title: 'ID', width: 50 },
-  { colKey: 'chatgpt_username', title: 'ChatGPT 账号', width: 220, fixed: 'left' },
-  { colKey: 'auth_status', title: '状态', width: 100, fixed: 'left' },
-  { colKey: 'plan_type', title: '类型', width: 100 },
-  // { colKey: 'use_count', title: '近期用量', width: 350 },
-  { colKey: 'access_token_exp', title: 'Access Token 过期时间', width: 200 },
+  { colKey: 'chatgpt_username', title: 'chatgpt_username', width: 220, fixed: 'left' },
+  { colKey: 'auth_status', title: 'auth_status', width: 100, fixed: 'left' },
+  { colKey: 'plan_type', title: 'plan_type', width: 100 },
+  // { colKey: 'use_count', title: 'use_count', width: 350 },
+  { colKey: 'access_token_exp', title: 'access_token_exp', width: 200 },
   { colKey: 'created_time', title: '创建时间', width: 200 },
-  // { colKey: 'updated_at', title: '最近更新时间', width: 200 },
-  { colKey: 'remark', title: '备注' },
-  { width: 200, colKey: 'op', title: '操作' },
+  // { colKey: 'updated_at', title: 'updated_at', width: 200 },
+  { colKey: 'remark', title: 'remark' },
+  { width: 200, colKey: 'op', title: 'operating' },
 ];
 const showDialog = ref(false);
 const dialogVisibleDelete = ref(false);
@@ -219,7 +219,7 @@ const addChatToken = async () => {
     showDialog.value = false;
     await getChatGPTList();
     newChat.value.chatgpt_token = '';
-    MessagePlugin.success('新增成功');
+    MessagePlugin.success('Added successfully');
   }
 };
 
@@ -246,13 +246,13 @@ const handleDelete = async () => {
     MessagePlugin.error(JSON.stringify(Object.values(data)[0]));
   } else {
     await getChatGPTList();
-    MessagePlugin.success('删除成功');
+    MessagePlugin.success('Deleted successfully');
   }
 };
 
 const handleAdd = () => {
   if (newChat.value.chatgpt_token.trim() === '') {
-    MessagePlugin.error('Token 不能为空');
+    MessagePlugin.error('Token Cannot be empty');
   } else {
     addChatToken();
   }
@@ -269,7 +269,7 @@ const handleEditConfirm = async () => {
     chatgpt_username: editChatInfo.value.chatgpt_username,
   });
   await getChatGPTList();
-  MessagePlugin.success('修改成功');
+  MessagePlugin.success('Modification successful');
   dialogVisibleEdit.value = false;
 };
 </script>
