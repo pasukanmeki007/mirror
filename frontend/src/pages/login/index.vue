@@ -5,7 +5,7 @@
         <div v-if="cfg.notice" v-html="cfg.notice"></div>
       </div>
       <div v-if="cfg.show_github" style="margin: 12px 20px">
-        <a href="https://github.com/dairoot/ChatGPT-Mirror" target="_blank" style="float: right">
+        <a href="https://github.com/dairoot/ChatGPT-Mirror" target="_blank" style="float: right;display: none;">
           <svg
             width="32"
             height="32"
@@ -30,16 +30,16 @@
         <h2 class="login-title">
           <component :is="LogoOpenai" style="margin-bottom: 50px"></component>
 
-          <div v-if="IsRegister">创建帐户</div>
-          <div v-else>欢迎回来</div>
+          <div v-if="IsRegister">Create an account</div>
+          <div v-else>welcome back</div>
         </h2>
         <t-loading :loading="loading">
           <t-form :data="loginForm" :label-width="0" :rules="rules" ref="loginFormRef" @submit="onSubmit">
             <t-form-item name="username">
-              <t-input v-model="loginForm.username" placeholder="用户名"></t-input>
+              <t-input v-model="loginForm.username" placeholder="username"></t-input>
             </t-form-item>
             <t-form-item name="password">
-              <t-input v-model="loginForm.password" type="password" autocomplete="on" placeholder="密码"></t-input>
+              <t-input v-model="loginForm.password" type="password" autocomplete="on" placeholder="password"></t-input>
             </t-form-item>
 
             <t-form-item v-if="loginType === 'register'" name="chatgpt_token">
@@ -50,31 +50,31 @@
                   size="large"
                 ></t-textarea>
                 <span style="font-size: 12px; color: #888">
-                  Session Token 获取说明：
-                  <t-link target="_blank" theme="primary" size="small" :href="ChatgptTokenTutorialUrl">手动获取</t-link>
+                  Session Token Get Instructions：
+                  <t-link target="_blank" theme="primary" size="small" :href="ChatgptTokenTutorialUrl">manual access</t-link>
                   <!-- or
-                  <t-link target="_blank" theme="primary" size="small" :href="ChatgptTokenAuthUrl">自动获取</t-link> -->
+                  <t-link target="_blank" theme="primary" size="small" :href="ChatgptTokenAuthUrl">Automatic acquisition</t-link> -->
                 </span>
               </div>
             </t-form-item>
 
             <t-form-item>
               <t-button theme="success" type="submit" size="large" class="login-button">
-                <span v-if="IsRegister">注册</span>
-                <span v-else> 登录</span>
+                <span v-if="IsRegister">register</span>
+                <span v-else> Log in</span>
               </t-button>
             </t-form-item>
           </t-form>
         </t-loading>
         <div style="text-align: center; margin-top: 15px">
           <div v-if="IsRegister">
-            已经拥有帐户？<t-link :underline="false" href="/admin/#/login" style="color: #10a37f">登录</t-link> or
-            <t-link :underline="false" style="color: red" @click="goFree">免费体验</t-link>
+            Already have an account？<t-link :underline="false" href="/admin/#/login" style="color: #10a37f">Log in</t-link> or
+            <t-link :underline="false" style="color: red" @click="goFree">Free Trial</t-link>
           </div>
           <div v-else>
-            没有帐户？
-            <t-link :underline="false" href="/admin/#/register" style="color: #10a37f">注册</t-link> or
-            <t-link :underline="false" style="color: red" @click="goFree">免费体验</t-link>
+            No account？
+            <t-link :underline="false" href="/admin/#/register" style="color: #10a37f">register</t-link> or
+            <t-link :underline="false" style="color: red" @click="goFree">Free Trial</t-link>
           </div>
         </div>
       </t-card>
@@ -109,10 +109,10 @@ onMounted(async () => {
 });
 
 const rules: Record<string, FormRule[]> = {
-  username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-  password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+  username: [{ required: true, message: 'Please enter your username', trigger: 'blur' }],
+  password: [{ required: true, message: 'Please enter your password', trigger: 'blur' }],
   chatgpt_token: [
-    { required: true, message: '请输入 Access Token 或 Session Token 或 Refresh Token', trigger: 'blur' },
+    { required: true, message: 'Please enter Access Token or Session Token or Refresh Token', trigger: 'blur' },
   ],
 };
 
@@ -166,7 +166,7 @@ const onSubmit: FormProps['onSubmit'] = async ({ validateResult, firstError }) =
 
     loading.value = false;
   } else {
-    console.error('表单引用未定义', firstError);
+    console.error('Form reference is not defined', firstError);
   }
 };
 
