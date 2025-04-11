@@ -12,15 +12,15 @@
         <t-form-item label="ChatGPT" name="username">
           <t-input v-model="inviteUser.chatgpt_username" disabled></t-input>
         </t-form-item>
-        <t-form-item label="过期时间" name="expires_time">
-          <t-select v-model="inviteUser.expires_time" :options="ExpiresAtList" placeholder="过期时间"></t-select>
+        <t-form-item label="Expiration time" name="expires_time">
+          <t-select v-model="inviteUser.expires_time" :options="ExpiresAtList" placeholder="Expiration time"></t-select>
         </t-form-item>
-        <t-form-item label="邀请码数量" name="invite_count">
+        <t-form-item label="Number of invitation codes" name="invite_count">
           <t-input v-model="inviteUser.invite_count"></t-input>
         </t-form-item>
 
         <t-form-item>
-          <t-button theme="primary" type="submit">创建</t-button>
+          <t-button theme="primary" type="submit">create</t-button>
         </t-form-item>
       </t-form>
     </t-card>
@@ -32,7 +32,7 @@
 
         <template #invite_url="{ row }">
           <!-- <t-icon name="file-copy"></t-icon> -->
-          <t-tooltip content="已复制" theme="light">
+          <t-tooltip content="Copied" theme="light">
             <t-link class="to" hover="color" @click="copyLink(getInviteUrl(row))">
               {{ getInviteUrl(row) }}
             </t-link>
@@ -41,7 +41,7 @@
 
         <template #op="slotProps">
           <t-space>
-            <t-link theme="danger" @click="handleClickDelete(slotProps.row)">删除</t-link>
+            <t-link theme="danger" @click="handleClickDelete(slotProps.row)">delete</t-link>
           </t-space>
         </template>
       </t-table>
@@ -49,7 +49,7 @@
       <!-- 确认删除 dialog -->
       <t-dialog
         v-model:visible="dialogVisibleDelete"
-        header="确认删除该邀请链接吗？"
+        header="Are you sure you want to delete this invitation link?？"
         width="500"
         :on-confirm="handleDelete"
       >
@@ -74,12 +74,12 @@ const idDelete = ref('');
 
 const columns: TableProps['columns'] = [
   { colKey: 'id', title: 'ID' },
-  { colKey: 'chatgpt_username', title: 'ChatGPT 账号', width: 200 },
-  { colKey: 'invite_count', title: '邀请数量' },
-  { colKey: 'used_count', title: '已用数量' },
-  { colKey: 'expires_at', title: '过期时间', width: 200 },
-  { colKey: 'invite_url', title: '邀请链接', width: 300 },
-  { width: 200, colKey: 'op', title: '操作' },
+  { colKey: 'chatgpt_username', title: 'ChatGPT account', width: 200 },
+  { colKey: 'invite_count', title: 'invite_count' },
+  { colKey: 'used_count', title: 'used_count' },
+  { colKey: 'expires_at', title: 'expires_at', width: 200 },
+  { colKey: 'invite_url', title: 'invite_url', width: 300 },
+  { width: 200, colKey: 'op', title: 'operating' },
 ];
 
 onMounted(async () => {
@@ -106,13 +106,13 @@ const FORM_RULES: FormProps['rules'] = {
   invite_count: [{ required: true, message: 'Please input invite count', trigger: 'blur' }],
 };
 const ExpiresAtList = [
-  { label: '5 分钟', value: 5 * 60 },
-  { label: '10 分钟', value: 10 * 60 },
-  { label: '30 分钟', value: 30 * 60 },
-  { label: '1 小时', value: 60 * 60 },
-  { label: '6 小时', value: 360 * 60 },
-  { label: '1 天', value: 1440 * 60 },
-  { label: '3 天', value: 2160 * 60 },
+  { label: '5 minute', value: 5 * 60 },
+  { label: '10 minute', value: 10 * 60 },
+  { label: '30 minute', value: 30 * 60 },
+  { label: '1 Hour', value: 60 * 60 },
+  { label: '6 Hour', value: 360 * 60 },
+  { label: '1 day', value: 1440 * 60 },
+  { label: '3 day', value: 2160 * 60 },
 ];
 const inviteUserFormRef = ref<FormInstanceFunctions>(null);
 
@@ -151,7 +151,7 @@ const handleDelete = async () => {
     MessagePlugin.error(JSON.stringify(Object.values(data)[0]));
   } else {
     await getInviteCodeList();
-    MessagePlugin.success('删除成功');
+    MessagePlugin.success('Deleted successfully');
   }
 };
 
@@ -166,7 +166,7 @@ const addInviteCode = async () => {
     MessagePlugin.error(JSON.stringify(Object.values(data)[0]));
   } else {
     await getInviteCodeList();
-    MessagePlugin.success('删除成功');
+    MessagePlugin.success('Deleted successfully');
   }
 };
 
@@ -176,7 +176,7 @@ const handleInvite: FormProps['onSubmit'] = async ({ validateResult, firstError 
     console.log('inviteUser', inviteUser.value);
     await addInviteCode();
   } else {
-    console.error('表单引用未定义', firstError);
+    console.error('Form reference is not defined', firstError);
   }
 };
 
