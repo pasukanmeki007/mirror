@@ -2,12 +2,12 @@ import os
 from pathlib import Path
 
 DEBUG = True
-SHOW_GITHUB = True
-FREE_ACCOUNT_USERNAME = "free_account"
+SHOW_GITHUB = False
+FREE_ACCOUNT_USERNAME = "kontolodon"
 
 ADMIN_USERNAME = "dairoot"
 ADMIN_PASSWORD = "dairoot"
-ALLOW_REGISTER = True
+ALLOW_REGISTER = False
 # CHATGPT_GATEWAY_URL = "https://dairoot.serv00.net"
 CHATGPT_GATEWAY_URL = "http://127.0.0.1:8787"
 
