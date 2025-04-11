@@ -25,7 +25,7 @@
     <t-input
       v-model="searchData"
       :class="['header-search', { 'width-zero': !isSearchFocus }]"
-      placeholder="输入要搜索内容"
+      placeholder="Enter the content you want to search"
       :autofocus="isSearchFocus"
       @blur="changeSearchFocus(false)"
     >
